@@ -10,7 +10,7 @@ As software becomes autonomous, enterprises require guarantees that are:
 
 Historically, meeting these requirements has required large organizations with dedicated platform, security, and compliance teams. This has tightly coupled enterprise readiness to organizational scale.
 
-**Lattice's vision is to break that coupling.**
+**Lattice's vision is to break that coupling—to let individuals ship software that enterprises can trust.**
 
 ## The Problem
 
@@ -39,15 +39,17 @@ As a result:
 
 - Enterprise-grade enforcement becomes **structural**, not organizational
 - Enterprises get guarantees **enforced by the platform itself**, not by best practices
-- Individual developers and small teams can operate with the same enforcement guarantees as large organizations
+- Individual developers and small teams can operate with the same enforcement guarantees as large organizations, without diverting effort into platform engineering
 
 ## The Impact
 
 The ability to deploy and sell autonomous software into enterprises no longer depends on the size of the team building it.
 
-Individual developers and small teams can operate with the same enforcement guarantees as large organizations, without diverting effort into platform engineering.
+Solo developers and small teams build products with Lattice as infrastructure, then sell those products to enterprises with enforcement guarantees already built in.
 
-**Lattice aims to be the control plane that makes this shift possible.**
+As these users close enterprise deals, Lattice grows with them—not ahead of them.
+
+**Lattice lets individuals ship software that enterprises can trust.**
 
 ---
 
