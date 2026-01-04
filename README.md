@@ -12,7 +12,9 @@ As AI agents become autonomous—taking actions, accessing systems, and making d
 - **Provable and auditable** - enforcement decisions are transparent and inspectable
 - **Independent of application code** - trust is a property of the runtime, not the team
 
-Lattice decouples enterprise enforcement from agent implementation, providing it as a set of enforced, white-labeled runtime primitives.
+Lattice decouples enterprise enforcement from agent implementation, providing identity, authorization, audit, and deployment constraints as enforced runtime primitives.
+
+**Lattice lets individuals ship software that enterprises can trust.**
 
 ## Why Lattice?
 
@@ -23,8 +25,10 @@ Traditional approach:
 
 Lattice approach:
 - Enforcement is moved into the runtime itself
-- Teams declare constraints once, Lattice enforces them centrally
+- Developers declare constraints once, Lattice enforces them centrally
 - Enterprise-grade enforcement becomes structural, not organizational
+
+As developers grow and close enterprise deals, Lattice grows with them.
 
 ## What Lattice Enforces
 
