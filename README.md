@@ -1,6 +1,6 @@
 # Lattice Runtime
 
-**Runtime enforcement infrastructure for autonomous AI agents**
+**Runtime enforcement and identity infrastructure for autonomous AI agents**
 
 Lattice is a runtime enforcement layer that applies identity, authorization, audit, and deployment constraints to AI agents. It sits in the execution path, so violations are blocked by design, not by application code.
 
