@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Lattice Runtime - Enforcement Infrastructure for AI Agents",
-  description: "Runtime enforcement for AI agents with cryptographically-verified identity, zero-trust authorization, immutable audit, and deployment constraints",
+  description: "Runtime enforcement for AI sidecars with cryptographically-verified identity, zero-trust authorization, immutable audit, and deployment constraints",
 };
 
 export default function RootLayout({

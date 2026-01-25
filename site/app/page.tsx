@@ -510,7 +510,7 @@ function SolutionSection() {
                   <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" style={{ color: "#d97706" }} />
                   <div>
                     <div className="font-medium" style={{ color: "#1a1a1a" }}>Build Capabilities, Not Infrastructure</div>
-                    <div className="text-sm" style={{ color: "#666666" }}>Focus on agents, not enforcement systems</div>
+                    <div className="text-sm" style={{ color: "#666666" }}>Focus on sidecars, not enforcement systems</div>
                   </div>
                 </li>
                 <li className="flex items-start">
@@ -575,7 +575,7 @@ function FeaturesSection() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#666666" }}>
-              Verifies the identity of principals (users, services, agents) across cloud, self-hosted, and air-gapped environments.
+              Verifies the identity of principals (users, services, sidecars) across cloud, self-hosted, and air-gapped environments.
             </p>
             <ul className="space-y-2">
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
@@ -641,7 +641,7 @@ function FeaturesSection() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#666666" }}>
-              Generates tamper-evident records of all enforcement decisions and agent actions for compliance and forensics.
+              Generates tamper-evident records of all enforcement decisions and sidecar actions for compliance and forensics.
             </p>
             <ul className="space-y-2">
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
@@ -674,7 +674,7 @@ function FeaturesSection() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#666666" }}>
-              Ensures agents execute only within approved boundaries, configurations, and environments.
+              Ensures sidecars execute only within approved boundaries, configurations, and environments.
             </p>
             <ul className="space-y-2">
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
@@ -925,7 +925,7 @@ function Footer() {
         </div>
 
         <div className="mt-8 pt-6 text-center text-xs" style={{ borderTop: "1px solid #e0e0d8", color: "#999999" }}>
-          <p>© 2026 Lattice Runtime. Open source runtime enforcement for autonomous AI agents.</p>
+          <p>© 2026 Lattice Runtime. Open source runtime enforcement for autonomous AI sidecars.</p>
         </div>
       </div>
     </footer>
