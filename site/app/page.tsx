@@ -18,6 +18,9 @@ import {
   ArrowRight,
   Github,
   Mail,
+  Sparkles,
+  Package,
+  Box,
 } from 'lucide-react';
 
 type ActiveSection = 'hero' | 'problem' | 'solution' | 'features' | 'architecture' | 'contact';
@@ -189,15 +192,35 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
                 {item.label}
               </a>
             ))}
-            <a
-              href="https://registry.latticeruntime.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium transition-colors hover:text-[#d97706]"
-              style={{ color: "#666666" }}
-            >
-              Registry
-            </a>
+            <div className="flex items-center gap-1 px-2 py-1 rounded-md" style={{ background: "#ebe9e1" }}>
+              <a
+                href="https://registry.latticeruntime.com/modules"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium transition-colors hover:text-[#d97706] px-2 py-1"
+                style={{ color: "#666666" }}
+              >
+                Modules
+              </a>
+              <a
+                href="https://registry.latticeruntime.com/templates"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium transition-colors hover:text-[#d97706] px-2 py-1"
+                style={{ color: "#666666" }}
+              >
+                Templates
+              </a>
+              <a
+                href="https://registry.latticeruntime.com/presets"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium transition-colors hover:text-[#d97706] px-2 py-1"
+                style={{ color: "#666666" }}
+              >
+                Presets
+              </a>
+            </div>
             <a
               href="https://github.com/latticeHQ/lattice-runtime"
               target="_blank"
@@ -821,6 +844,38 @@ function ArchitectureSection() {
             <p className="text-sm mt-4" style={{ color: "#666666" }}>
               Documentation, examples, and API references coming soon. Star the project on GitHub to follow development.
             </p>
+            <div className="grid grid-cols-3 gap-4 mt-6 pt-6" style={{ borderTop: "1px solid #e0e0d8" }}>
+              <a
+                href="https://registry.latticeruntime.com/modules"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm hover:text-[#d97706] transition"
+                style={{ color: "#666666" }}
+              >
+                <Package size={16} style={{ color: "#d97706" }} />
+                Browse Modules
+              </a>
+              <a
+                href="https://registry.latticeruntime.com/templates"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm hover:text-[#d97706] transition"
+                style={{ color: "#666666" }}
+              >
+                <Box size={16} style={{ color: "#d97706" }} />
+                Explore Templates
+              </a>
+              <a
+                href="https://registry.latticeruntime.com/presets"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm hover:text-[#d97706] transition"
+                style={{ color: "#666666" }}
+              >
+                <Sparkles size={16} style={{ color: "#d97706" }} />
+                Discover Presets
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -909,8 +964,14 @@ function Footer() {
           </div>
 
           <div className="flex items-center space-x-6 text-sm" style={{ color: "#666666" }}>
-            <a href="https://registry.latticeruntime.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
-              Registry
+            <a href="https://registry.latticeruntime.com/modules" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
+              Modules
+            </a>
+            <a href="https://registry.latticeruntime.com/templates" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
+              Templates
+            </a>
+            <a href="https://registry.latticeruntime.com/presets" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
+              Presets
             </a>
             <a href="https://github.com/latticeHQ/lattice-runtime" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
               GitHub
