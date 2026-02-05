@@ -21,56 +21,50 @@ import {
   Sparkles,
   Package,
   Box,
+  Cpu,
+  Monitor,
+  Cloud,
+  Globe,
+  Zap,
+  Database,
+  Wifi,
 } from 'lucide-react';
 
-type ActiveSection = 'hero' | 'problem' | 'solution' | 'features' | 'architecture' | 'contact';
+type ActiveSection = 'hero' | 'problem' | 'solution' | 'ecosystem' | 'features' | 'inference' | 'cloud' | 'architecture' | 'quickstart' | 'audiences' | 'contact';
 
-export default function LatticeRuntime() {
+export default function LatticeAgentHQ() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState<ActiveSection>('hero');
   const [consoleLines, setConsoleLines] = useState<string[]>([]);
   const [showCursor, setShowCursor] = useState(true);
-  const [metrics, setMetrics] = useState({
-    throughput: 0,
-    latency: 0,
-    blocked: 0,
-    allowed: 0
-  });
 
   useEffect(() => {
     setIsLoaded(true);
 
-    // Animate metrics
-    const metricsInterval = setInterval(() => {
-      setMetrics({
-        throughput: Math.floor(Math.random() * 50000) + 45000,
-        latency: Math.random() * 2 + 0.1,
-        blocked: Math.floor(Math.random() * 100) + 50,
-        allowed: Math.floor(Math.random() * 5000) + 8000
-      });
-    }, 2000);
-
-    // Simulate enforcement console
+    // Simulate ecosystem console
     const terminalLines = [
-      '$ lattice enforce --mode strict --verify-chains',
-      'Initializing Lattice Runtime v0.1.0...',
-      'Loading cryptographic policy chains...',
-      '✓ Identity verification layer: ACTIVE [SHA-256: 8f3a...]',
-      '✓ Authorization engine: ACTIVE [Policy count: 247]',
-      '✓ Audit blockchain: SYNCED [Block height: 142,857]',
-      '✓ Deployment constraints: ENFORCED [Zones: 12]',
-      '✓ Quantum-resistant signatures: ENABLED',
+      '$ brew install latticehq/lattice/lattice',
+      'Installing Lattice Agent Headquarters...',
+      '✓ lattice v0.1.0 installed',
       '',
-      'Agent request: deploy_model(model_id="gpt-4", region="us-east")',
-      '→ [0.023ms] Verifying identity signature...',
-      '→ [0.041ms] Checking authorization policies...',
-      '→ [0.015ms] Evaluating deployment constraints...',
-      '→ [0.008ms] Computing audit merkle proof...',
-      '✓ Request ALLOWED - All 247 policies satisfied',
-      '✓ Audit event recorded: event_id="ae7f2a1c" | block=142858',
-      '✓ Total enforcement time: 0.087ms',
+      '$ lattice server',
+      'Initializing Lattice Agent HQ...',
+      '✓ Runtime enforcement kernel: ACTIVE',
+      '✓ Identity verification: ACTIVE [SHA-256]',
+      '✓ Authorization engine: ACTIVE [247 policies]',
+      '✓ Audit trail: SYNCED [tamper-evident]',
+      '✓ Inference engine: READY [MLX backend detected]',
+      '✓ Workbench: AVAILABLE at localhost:3000',
+      '✓ Registry: CONNECTED [142 templates]',
       '',
-      'Ready to enforce. Violations will be blocked.',
+      '$ lattice create my-agent --template docker',
+      '→ Creating agent "my-agent"...',
+      '→ Assigning cryptographic identity...',
+      '→ Applying default policy set...',
+      '→ Configuring audit logging...',
+      '✓ Agent "my-agent" deployed with full governance',
+      '',
+      'Agent HQ ready. Your agents. Your rules.',
       '$ _'
     ];
 
@@ -89,7 +83,7 @@ export default function LatticeRuntime() {
     }, 530);
 
     const handleScroll = () => {
-      const sections: ActiveSection[] = ['hero', 'problem', 'solution', 'features', 'architecture', 'contact'];
+      const sections: ActiveSection[] = ['hero', 'problem', 'solution', 'ecosystem', 'features', 'inference', 'cloud', 'architecture', 'quickstart', 'audiences', 'contact'];
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -107,7 +101,6 @@ export default function LatticeRuntime() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(cursorInterval);
-      clearInterval(metricsInterval);
     };
   }, []);
 
@@ -123,11 +116,16 @@ export default function LatticeRuntime() {
       <Header activeSection={activeSection} />
 
       <main className="relative z-10">
-        <HeroSection consoleLines={consoleLines} showCursor={showCursor} metrics={metrics} />
+        <HeroSection consoleLines={consoleLines} showCursor={showCursor} />
         <ProblemSection />
         <SolutionSection />
+        <EcosystemSection />
         <FeaturesSection />
+        <InferenceSection />
+        <CloudSection />
         <ArchitectureSection />
+        <QuickStartSection />
+        <AudienceSection />
         <ContactSection />
       </main>
 
@@ -152,7 +150,9 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
     { id: 'hero' as ActiveSection, label: 'Home' },
     { id: 'problem' as ActiveSection, label: 'Problem' },
     { id: 'solution' as ActiveSection, label: 'Solution' },
+    { id: 'ecosystem' as ActiveSection, label: 'Ecosystem' },
     { id: 'features' as ActiveSection, label: 'Features' },
+    { id: 'cloud' as ActiveSection, label: 'Cloud' },
     { id: 'architecture' as ActiveSection, label: 'Architecture' },
     { id: 'contact' as ActiveSection, label: 'Contact' }
   ];
@@ -176,7 +176,7 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
               <span className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Lattice</span>
               <span className="text-[10px] font-medium px-1.5 py-0.5 rounded"
                     style={{ background: "#ebe9e1", color: "#666666" }}>
-                Runtime
+                Agent HQ
               </span>
             </div>
           </a>
@@ -222,7 +222,7 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
               </a>
             </div>
             <a
-              href="https://github.com/latticeHQ/lattice-runtime"
+              href="https://github.com/latticeHQ"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2"
@@ -238,7 +238,7 @@ function Header({ activeSection }: { activeSection: ActiveSection }) {
 }
 
 // Hero Section
-function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: string[], showCursor: boolean, metrics: any }) {
+function HeroSection({ consoleLines, showCursor }: { consoleLines: string[], showCursor: boolean }) {
   return (
     <section id="hero" className="pt-28 pb-20 relative min-h-screen flex items-center">
       <div className="container mx-auto px-4">
@@ -253,69 +253,57 @@ function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: stri
                 <line x1="2" y1="8" x2="6" y2="8" stroke="currentColor" strokeWidth="1"/>
                 <line x1="10" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1"/>
               </svg>
-              <span className="tracking-wide">ENTERPRISE ENFORCEMENT ARCHITECTURE</span>
+              <span className="tracking-wide">AGENT HEADQUARTERS</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" style={{ color: "#1a1a1a" }}>
-              Runtime Enforcement
+              The Open-Source
               <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r" style={{ backgroundImage: "linear-gradient(to right, #d97706, #f59e0b)" }}>
-                for AI Agents
+                Headquarters for AI Agents
               </span>
             </h1>
 
-            <p className="text-xl mb-12 leading-relaxed max-w-2xl" style={{ color: "#666666" }}>
-              Lattice provides <span style={{ color: "#1a1a1a", fontWeight: "500" }}>cryptographically-verified identity, zero-trust authorization, immutable audit, and deployment constraints</span> as enforced runtime primitives.
+            <p className="text-xl mb-8 leading-relaxed max-w-2xl" style={{ color: "#666666" }}>
+              Lattice is where AI agents get their <span style={{ color: "#1a1a1a", fontWeight: "500" }}>identity, their permissions, their compute, and their orders</span>. From a weekend hack to Fortune 500 governance — self-hosted, vendor-neutral, runs anywhere.
             </p>
 
-            {/* Real-time metrics dashboard */}
-            <div className="grid grid-cols-2 gap-3 mb-12">
-              <div className="card-base p-6">
-                <div className="space-y-2">
-                  <div className="text-xs font-medium uppercase tracking-wider" style={{ color: "#999999" }}>Throughput</div>
-                  <div className="text-3xl font-bold tabular-nums font-mono" style={{ color: "#1a1a1a" }}>
-                    {metrics.throughput.toLocaleString()}
-                    <span className="text-sm font-normal ml-2" style={{ color: "#999999" }}>req/s</span>
-                  </div>
-                </div>
+            {/* Ecosystem stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+              <div className="card-base p-4 text-center">
+                <div className="text-2xl font-bold font-mono" style={{ color: "#d97706" }}>5</div>
+                <div className="text-[10px] font-medium uppercase tracking-wider mt-1" style={{ color: "#999999" }}>Components</div>
               </div>
-              <div className="card-base p-6">
-                <div className="space-y-2">
-                  <div className="text-xs font-medium uppercase tracking-wider" style={{ color: "#999999" }}>Latency</div>
-                  <div className="text-3xl font-bold tabular-nums font-mono" style={{ color: "#1a1a1a" }}>
-                    {metrics.latency.toFixed(2)}
-                    <span className="text-sm font-normal ml-2" style={{ color: "#999999" }}>ms</span>
-                  </div>
-                </div>
+              <div className="card-base p-4 text-center">
+                <div className="text-2xl font-bold font-mono" style={{ color: "#d97706" }}>280K+</div>
+                <div className="text-[10px] font-medium uppercase tracking-wider mt-1" style={{ color: "#999999" }}>Lines of Code</div>
               </div>
-              <div className="card-base p-6">
-                <div className="space-y-2">
-                  <div className="text-xs font-medium uppercase tracking-wider" style={{ color: "#999999" }}>Allowed</div>
-                  <div className="text-3xl font-bold tabular-nums font-mono" style={{ color: "#d97706" }}>
-                    {metrics.allowed.toLocaleString()}
-                  </div>
-                </div>
+              <div className="card-base p-4 text-center">
+                <div className="text-2xl font-bold font-mono" style={{ color: "#d97706" }}>6</div>
+                <div className="text-[10px] font-medium uppercase tracking-wider mt-1" style={{ color: "#999999" }}>Deploy Targets</div>
               </div>
-              <div className="card-base p-6">
-                <div className="space-y-2">
-                  <div className="text-xs font-medium uppercase tracking-wider" style={{ color: "#999999" }}>Blocked</div>
-                  <div className="text-3xl font-bold tabular-nums font-mono" style={{ color: "#d97706" }}>
-                    {metrics.blocked}
-                  </div>
-                </div>
+              <div className="card-base p-4 text-center">
+                <div className="text-lg font-bold font-mono" style={{ color: "#d97706" }}>Apache 2.0</div>
+                <div className="text-[10px] font-medium uppercase tracking-wider mt-1" style={{ color: "#999999" }}>Open Source</div>
               </div>
+            </div>
+
+            {/* Install command */}
+            <div className="card-base p-3 mb-8 inline-flex items-center gap-3">
+              <Terminal size={14} style={{ color: "#d97706" }} />
+              <code className="text-sm font-mono" style={{ color: "#666666", background: "transparent", border: "none", padding: 0 }}>brew install latticehq/lattice/lattice</code>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="#solution"
+                href="#quickstart"
                 className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3"
               >
                 Get Started
                 <ArrowRight size={18} />
               </a>
               <a
-                href="https://github.com/latticeHQ/lattice-runtime"
+                href="https://github.com/latticeHQ"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3"
@@ -327,24 +315,71 @@ function HeroSection({ consoleLines, showCursor, metrics }: { consoleLines: stri
           </div>
 
           <div className="relative">
-            <div className="card-base relative overflow-hidden" style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
-              <div className="py-3 px-4 flex items-center text-sm" style={{ background: "#fafaf8", borderBottom: "1px solid #e0e0d8" }}>
-                <Terminal size={14} className="mr-2" style={{ color: "#d97706" }} />
-                <span className="font-medium font-mono text-sm" style={{ color: "#666666" }}>lattice_enforcement.log</span>
-                <div className="ml-auto flex gap-2">
-                  <div className="w-2 h-2 rounded-full" style={{ background: "#e0e0d8" }}></div>
-                  <div className="w-2 h-2 rounded-full" style={{ background: "#e0e0d8" }}></div>
-                  <div className="w-2 h-2 rounded-full" style={{ background: "#d97706" }}></div>
+            {/* Glow effect behind terminal */}
+            <div className="absolute -inset-4 rounded-2xl opacity-30 blur-2xl" style={{ background: "radial-gradient(ellipse at center, rgba(217, 119, 6, 0.15), transparent 70%)" }}></div>
+
+            <div className="relative overflow-hidden rounded-xl" style={{ background: "#1a1b26", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05)" }}>
+              {/* Title bar */}
+              <div className="flex items-center px-4 py-3" style={{ background: "#16171f", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="flex gap-2 mr-4">
+                  <div className="w-3 h-3 rounded-full" style={{ background: "#ff5f57" }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ background: "#febc2e" }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ background: "#28c840" }}></div>
                 </div>
+                <div className="flex-1 text-center">
+                  <span className="font-mono text-xs tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>lattice — agent_hq — zsh — 80×24</span>
+                </div>
+                <div className="w-16"></div>
               </div>
 
-              <div className="code-block p-6 font-mono text-sm h-96 overflow-auto">
-                {consoleLines.map((line, index) => (
-                  <div key={index} style={{ color: line.startsWith('✓') ? "#059669" : line.startsWith('→') ? "#999999" : "#666666" }}>
-                    {line}
-                  </div>
-                ))}
-                {showCursor && <span className="inline-block w-2 h-4 ml-1 align-text-bottom animate-pulse" style={{ background: "#d97706" }}></span>}
+              {/* Terminal body */}
+              <div className="p-5 font-mono text-sm h-96 overflow-auto" style={{ background: "#1a1b26", lineHeight: "1.7" }}>
+                {consoleLines.map((line, index) => {
+                  if (line === '') return <div key={index} className="h-2"></div>;
+
+                  const isCommand = line.startsWith('$');
+                  const isSuccess = line.startsWith('✓');
+                  const isAction = line.startsWith('→');
+                  const isInstalling = line.startsWith('Installing') || line.startsWith('Initializing');
+                  const isFinalMessage = line === 'Agent HQ ready. Your agents. Your rules.';
+
+                  return (
+                    <div key={index} className="flex items-start" style={{ minHeight: "1.5em" }}>
+                      {isCommand ? (
+                        <span>
+                          <span style={{ color: "#7aa2f7" }}>❯</span>
+                          <span style={{ color: "#c0caf5" }}>{line.slice(1)}</span>
+                        </span>
+                      ) : isSuccess ? (
+                        <span>
+                          <span style={{ color: "#9ece6a" }}>✓</span>
+                          <span style={{ color: "#a9b1d6" }}>{line.slice(1)}</span>
+                        </span>
+                      ) : isAction ? (
+                        <span>
+                          <span style={{ color: "#e0af68" }}>→</span>
+                          <span style={{ color: "#787c99" }}>{line.slice(1)}</span>
+                        </span>
+                      ) : isInstalling ? (
+                        <span style={{ color: "#787c99", fontStyle: "italic" }}>{line}</span>
+                      ) : isFinalMessage ? (
+                        <span className="font-medium" style={{ color: "#bb9af7" }}>{line}</span>
+                      ) : (
+                        <span style={{ color: "#565a6e" }}>{line}</span>
+                      )}
+                    </div>
+                  );
+                })}
+                {showCursor && (
+                  <span className="inline-block w-2 h-5 ml-1 align-text-bottom animate-pulse rounded-sm" style={{ background: "#7aa2f7", opacity: 0.8 }}></span>
+                )}
+              </div>
+
+              {/* Status bar */}
+              <div className="flex items-center justify-between px-4 py-1.5 font-mono" style={{ background: "#16171f", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: "10px", color: "rgba(255,255,255,0.25)" }}>
+                <span>zsh</span>
+                <span>lattice v0.1.0</span>
+                <span>utf-8</span>
               </div>
             </div>
           </div>
@@ -388,15 +423,15 @@ function ProblemSection() {
               </div>
               <ul className="space-y-2 ml-14">
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2" style={{ color: "#dc2626" }}>✗</span>
+                  <span className="mr-2" style={{ color: "#dc2626" }}>&#10007;</span>
                   Expensive engineering resources
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2" style={{ color: "#dc2626" }}>✗</span>
+                  <span className="mr-2" style={{ color: "#dc2626" }}>&#10007;</span>
                   Diverts from core product development
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2" style={{ color: "#dc2626" }}>✗</span>
+                  <span className="mr-2" style={{ color: "#dc2626" }}>&#10007;</span>
                   Trust depends on code discipline
                 </li>
               </ul>
@@ -416,15 +451,15 @@ function ProblemSection() {
               </div>
               <ul className="space-y-2 ml-14">
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2" style={{ color: "#dc2626" }}>✗</span>
+                  <span className="mr-2" style={{ color: "#dc2626" }}>&#10007;</span>
                   Small teams can&apos;t compete
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2" style={{ color: "#dc2626" }}>✗</span>
+                  <span className="mr-2" style={{ color: "#dc2626" }}>&#10007;</span>
                   Innovation slowed by infrastructure work
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2" style={{ color: "#dc2626" }}>✗</span>
+                  <span className="mr-2" style={{ color: "#dc2626" }}>&#10007;</span>
                   Enterprise deals require large teams
                 </li>
               </ul>
@@ -460,7 +495,7 @@ function SolutionSection() {
               Move Enforcement Into the Runtime
             </h2>
             <p className="text-lg" style={{ color: "#666666" }}>
-              Lattice decouples trust from team size by making enforcement a property of the runtime itself.
+              Lattice decouples trust from team size by providing a complete headquarters — enforcement, compute, operations, and community — as open-source infrastructure.
             </p>
           </div>
 
@@ -486,7 +521,7 @@ function SolutionSection() {
                 <div className="text-4xl font-bold mb-2" style={{ color: "#d97706" }}>3</div>
                 <h3 className="font-semibold mb-2" style={{ color: "#1a1a1a" }}>Violations Blocked</h3>
                 <p className="text-sm" style={{ color: "#666666" }}>
-                  Policy violations are structurally impossible—enforcement happens by design, not by discipline.
+                  Policy violations are structurally impossible — enforcement happens by design, not by discipline.
                 </p>
               </div>
             </div>
@@ -509,7 +544,7 @@ function SolutionSection() {
                 <li className="flex items-start">
                   <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" style={{ color: "#d97706" }} />
                   <div>
-                    <div className="font-medium" style={{ color: "#1a1a1a" }}>Auditable & Provable</div>
+                    <div className="font-medium" style={{ color: "#1a1a1a" }}>Auditable &amp; Provable</div>
                     <div className="text-sm" style={{ color: "#666666" }}>All enforcement decisions are transparent and inspectable</div>
                   </div>
                 </li>
@@ -533,7 +568,7 @@ function SolutionSection() {
                   <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" style={{ color: "#d97706" }} />
                   <div>
                     <div className="font-medium" style={{ color: "#1a1a1a" }}>Build Capabilities, Not Infrastructure</div>
-                    <div className="text-sm" style={{ color: "#666666" }}>Focus on sidecars, not enforcement systems</div>
+                    <div className="text-sm" style={{ color: "#666666" }}>Focus on agents, not enforcement systems</div>
                   </div>
                 </li>
                 <li className="flex items-start">
@@ -546,8 +581,8 @@ function SolutionSection() {
                 <li className="flex items-start">
                   <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" style={{ color: "#d97706" }} />
                   <div>
-                    <div className="font-medium" style={{ color: "#1a1a1a" }}>Scales with Revenue</div>
-                    <div className="text-sm" style={{ color: "#666666" }}>Lattice grows with you as you close deals</div>
+                    <div className="font-medium" style={{ color: "#1a1a1a" }}>Zero API Costs</div>
+                    <div className="text-sm" style={{ color: "#666666" }}>Local inference on your hardware, no monthly bill</div>
                   </div>
                 </li>
               </ul>
@@ -556,11 +591,152 @@ function SolutionSection() {
 
           <div className="card-base p-8 text-center" style={{ background: "linear-gradient(to right, rgba(217,119,6,0.1), rgba(245,158,11,0.1))", borderColor: "rgba(217,119,6,0.3)" }}>
             <p className="text-2xl font-bold mb-2" style={{ color: "#1a1a1a" }}>
-              Individual developers can now ship software that enterprises trust.
+              From solo hacker to Fortune 500 — same platform, same codebase, same community.
             </p>
             <p style={{ color: "#666666" }}>
-              Enterprise-grade enforcement becomes structural, not organizational.
+              Your agents. Your models. Your rules. Your infrastructure.
             </p>
+          </div>
+
+          {/* Trust layer infographic */}
+          <div className="card-base mt-12 overflow-hidden">
+            <img
+              src="/img/lattice-trust-layer.png"
+              alt="Lattice: The Open-Source Trust Layer for the AI Agent Era"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Ecosystem Section
+function EcosystemSection() {
+  return (
+    <section id="ecosystem" className="py-24 relative" style={{ borderTop: "1px solid #e0e0d8" }}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="badge-primary inline-flex items-center gap-2 mb-4">
+              <Layers size={14} className="mr-2" />
+              THE PLATFORM
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#1a1a1a" }}>
+              Agent Headquarters
+            </h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: "#666666" }}>
+              Five integrated components. One open-source platform. Everything your agents need.
+            </p>
+          </div>
+
+          {/* Ecosystem video */}
+          <div className="card-base overflow-hidden mb-12" style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
+            <video
+              src="/img/lattice-ecosystem-preview.mp4"
+              controls
+              poster="/img/lattice-headquarters.png"
+              className="w-full h-auto"
+              preload="metadata"
+            />
+          </div>
+
+          {/* Top row: 3 core components */}
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
+            <div className="card-interactive p-6">
+              <div className="flex items-center mb-4">
+                <div className="icon-container mr-3">
+                  <Shield className="w-5 h-5" style={{ color: "#d97706" }} />
+                </div>
+                <div>
+                  <h3 className="font-semibold" style={{ color: "#1a1a1a" }}>Runtime</h3>
+                  <p className="text-xs" style={{ color: "#d97706" }}>The Kernel</p>
+                </div>
+              </div>
+              <p className="text-sm mb-3" style={{ color: "#666666" }}>
+                Enforcement engine — identity, authorization, audit, deployment constraints. Every agent action passes through four gates.
+              </p>
+              <div className="text-xs font-mono" style={{ color: "#999999" }}>Go &middot; Apache 2.0</div>
+            </div>
+
+            <div className="card-interactive p-6">
+              <div className="flex items-center mb-4">
+                <div className="icon-container mr-3">
+                  <Cpu className="w-5 h-5" style={{ color: "#d97706" }} />
+                </div>
+                <div>
+                  <h3 className="font-semibold" style={{ color: "#1a1a1a" }}>Inference</h3>
+                  <p className="text-xs" style={{ color: "#d97706" }}>The Compute</p>
+                </div>
+              </div>
+              <p className="text-sm mb-3" style={{ color: "#666666" }}>
+                Local LLM serving on your hardware. MLX for Apple Silicon, CUDA for NVIDIA. mDNS autodiscovery forms GPU clusters automatically.
+              </p>
+              <div className="text-xs font-mono" style={{ color: "#999999" }}>Go + Python &middot; Apache 2.0</div>
+            </div>
+
+            <div className="card-interactive p-6">
+              <div className="flex items-center mb-4">
+                <div className="icon-container mr-3">
+                  <Monitor className="w-5 h-5" style={{ color: "#d97706" }} />
+                </div>
+                <div>
+                  <h3 className="font-semibold" style={{ color: "#1a1a1a" }}>Workbench</h3>
+                  <p className="text-xs" style={{ color: "#d97706" }}>The Interface</p>
+                </div>
+              </div>
+              <p className="text-sm mb-3" style={{ color: "#666666" }}>
+                Agent IDE and operations console. Multi-model chat, real-time monitoring, cost tracking. Desktop, web, CLI, VS Code.
+              </p>
+              <div className="text-xs font-mono" style={{ color: "#999999" }}>TypeScript &middot; MIT</div>
+            </div>
+          </div>
+
+          {/* Bottom row: 2 support components, centered */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+            <div className="card-interactive p-6">
+              <div className="flex items-center mb-4">
+                <div className="icon-container mr-3">
+                  <Package className="w-5 h-5" style={{ color: "#d97706" }} />
+                </div>
+                <div>
+                  <h3 className="font-semibold" style={{ color: "#1a1a1a" }}>Registry</h3>
+                  <p className="text-xs" style={{ color: "#d97706" }}>The Ecosystem</p>
+                </div>
+              </div>
+              <p className="text-sm mb-3" style={{ color: "#666666" }}>
+                Community templates, modules, and presets for Docker, Kubernetes, AWS, GCP, Azure. Deploy agents anywhere in minutes.
+              </p>
+              <div className="text-xs font-mono" style={{ color: "#999999" }}>Terraform &middot; Apache 2.0</div>
+            </div>
+
+            <div className="card-interactive p-6">
+              <div className="flex items-center mb-4">
+                <div className="icon-container mr-3" style={{ background: "rgba(245,158,11,0.1)", borderColor: "rgba(245,158,11,0.3)" }}>
+                  <Building className="w-5 h-5" style={{ color: "#f59e0b" }} />
+                </div>
+                <div>
+                  <h3 className="font-semibold" style={{ color: "#1a1a1a" }}>Enterprise</h3>
+                  <p className="text-xs" style={{ color: "#f59e0b" }}>The Scale Layer</p>
+                </div>
+              </div>
+              <p className="text-sm mb-3" style={{ color: "#666666" }}>
+                Admin control planes, policy lifecycle, directory integration (AD, Okta, LDAP), compliance exports (SOC2, HIPAA, FedRAMP).
+              </p>
+              <div className="text-xs font-mono" style={{ color: "#999999" }}>Commercial &middot; Self-Hosted</div>
+            </div>
+          </div>
+
+          {/* HQ Infographic */}
+          <div className="card-base overflow-hidden">
+            <img
+              src="/img/lattice-headquarters.png"
+              alt="Lattice Agent Headquarters — the complete open-source platform for AI agents"
+              className="w-full h-auto"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
@@ -598,23 +774,23 @@ function FeaturesSection() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#666666" }}>
-              Verifies the identity of principals (users, services, sidecars) across cloud, self-hosted, and air-gapped environments.
+              Cryptographically verified identity for every agent, user, and service across cloud, self-hosted, and air-gapped environments.
             </p>
             <ul className="space-y-2">
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Multi-factor authentication support
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                OAuth 2.0, OIDC, SAML, mutual TLS, API keys
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Service account verification
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                Unique cryptographic principal per agent
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
                 Cross-environment identity federation
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
                 Zero-trust identity model
               </li>
             </ul>
@@ -631,24 +807,24 @@ function FeaturesSection() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#666666" }}>
-              Evaluates whether an authenticated principal is permitted to perform a specific action on a resource.
+              Policy-as-code evaluated at runtime, not coded into applications. Fine-grained control over what agents can do.
             </p>
             <ul className="space-y-2">
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Role-based access control (RBAC)
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                RBAC + attribute-based policies (ABAC)
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Attribute-based policies (ABAC)
-              </li>
-              <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
                 Fine-grained resource permissions
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Dynamic policy evaluation
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                Dynamic real-time policy evaluation
+              </li>
+              <li className="text-sm flex items-start" style={{ color: "#666666" }}>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                Cross-platform consistency
               </li>
             </ul>
           </div>
@@ -664,23 +840,23 @@ function FeaturesSection() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#666666" }}>
-              Generates tamper-evident records of all enforcement decisions and sidecar actions for compliance and forensics.
+              Immutable, tamper-evident records of every enforcement decision and agent action for compliance and forensics.
             </p>
             <ul className="space-y-2">
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Immutable audit trail
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                Cryptographically chained audit trail
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Cryptographic event signing
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                Compliance reporting (SOC2, HIPAA, FedRAMP, GDPR)
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Compliance reporting (SOC2, HIPAA, etc.)
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                Queryable event history
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
                 Real-time event streaming
               </li>
             </ul>
@@ -697,26 +873,209 @@ function FeaturesSection() {
               </div>
             </div>
             <p className="mb-4" style={{ color: "#666666" }}>
-              Ensures sidecars execute only within approved boundaries, configurations, and environments.
+              Structural boundaries on agent execution — where they can run, what resources they consume, and when.
             </p>
             <ul className="space-y-2">
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
-                Geographic restrictions
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
+                Environment and geographic restrictions
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
                 Network segmentation enforcement
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
                 Resource quota management
               </li>
               <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>»</span>
+                <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&raquo;</span>
                 Air-gap validation
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Inference Section
+function InferenceSection() {
+  return (
+    <section id="inference" className="py-24 relative" style={{ borderTop: "1px solid #e0e0d8" }}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="badge-primary inline-flex items-center gap-2 mb-4">
+              <Cpu size={14} className="mr-2" />
+              LOCAL INFERENCE
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#1a1a1a" }}>
+              Your Models. Your Hardware. Zero API Costs.
+            </h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: "#666666" }}>
+              Run LLMs on your own machines with an OpenAI-compatible API. Data never leaves your infrastructure.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Capabilities */}
+            <div className="space-y-4">
+              <div className="card-base p-4 flex items-start">
+                <span className="mr-3 font-mono text-lg font-bold" style={{ color: "#d97706" }}>M4</span>
+                <div>
+                  <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Apple Silicon (MLX)</div>
+                  <div className="text-xs" style={{ color: "#666666" }}>Optimized for M1-M4 Metal GPU. Native performance on Mac.</div>
+                </div>
+              </div>
+              <div className="card-base p-4 flex items-start">
+                <Zap size={20} className="mr-3 mt-0.5 flex-shrink-0" style={{ color: "#d97706" }} />
+                <div>
+                  <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>NVIDIA (CUDA)</div>
+                  <div className="text-xs" style={{ color: "#666666" }}>llama.cpp with CUDA. Multi-GPU automatic tensor splitting.</div>
+                </div>
+              </div>
+              <div className="card-base p-4 flex items-start">
+                <Globe size={20} className="mr-3 mt-0.5 flex-shrink-0" style={{ color: "#d97706" }} />
+                <div>
+                  <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>OpenAI-Compatible API</div>
+                  <div className="text-xs" style={{ color: "#666666" }}>/v1/chat/completions — any tool that speaks OpenAI works with Lattice.</div>
+                </div>
+              </div>
+              <div className="card-base p-4 flex items-start">
+                <Wifi size={20} className="mr-3 mt-0.5 flex-shrink-0" style={{ color: "#d97706" }} />
+                <div>
+                  <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Zero-Config GPU Clustering</div>
+                  <div className="text-xs" style={{ color: "#666666" }}>mDNS autodiscovery. Machines on the same network form a cluster automatically.</div>
+                </div>
+              </div>
+              <div className="card-base p-4 flex items-start">
+                <Database size={20} className="mr-3 mt-0.5 flex-shrink-0" style={{ color: "#d97706" }} />
+                <div>
+                  <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Multi-Model Pool</div>
+                  <div className="text-xs" style={{ color: "#666666" }}>LRU eviction, memory budgeting. Serve multiple models simultaneously.</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Code examples */}
+            <div className="space-y-4">
+              <div className="card-base overflow-hidden">
+                <div className="py-2 px-4 text-xs font-mono" style={{ background: "#fafaf8", borderBottom: "1px solid #e0e0d8", color: "#666666" }}>
+                  Solo Developer
+                </div>
+                <div className="code-block p-4 text-sm" style={{ borderRadius: 0, border: "none", boxShadow: "none" }}>
+                  <div style={{ color: "#d97706" }}># One command — local inference running</div>
+                  <div style={{ color: "#666666" }}>$ lattice inference serve \</div>
+                  <div style={{ color: "#666666" }}>&nbsp;&nbsp;&nbsp;&nbsp;--model mlx-community/Llama-3.2-3B-Instruct-4bit</div>
+                  <div className="mt-2" style={{ color: "#059669" }}>&#10003; OpenAI-compatible API at localhost:8000</div>
+                </div>
+              </div>
+              <div className="card-base overflow-hidden">
+                <div className="py-2 px-4 text-xs font-mono" style={{ background: "#fafaf8", borderBottom: "1px solid #e0e0d8", color: "#666666" }}>
+                  Team GPU Cluster
+                </div>
+                <div className="code-block p-4 text-sm" style={{ borderRadius: 0, border: "none", boxShadow: "none" }}>
+                  <div style={{ color: "#d97706" }}># Machine 1 — starts cluster automatically</div>
+                  <div style={{ color: "#666666" }}>$ lattice inference serve \</div>
+                  <div style={{ color: "#666666" }}>&nbsp;&nbsp;&nbsp;&nbsp;--model meta-llama/Llama-3.1-70B --cluster</div>
+                  <div className="mt-2" style={{ color: "#d97706" }}># Machine 2, 3, 4 — discover and join via mDNS</div>
+                  <div style={{ color: "#666666" }}>$ lattice inference serve --join</div>
+                  <div className="mt-2" style={{ color: "#059669" }}>&#10003; Model distributed across 4 nodes. Zero config.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Cloud Integration Section
+function CloudSection() {
+  return (
+    <section id="cloud" className="py-24 relative" style={{ borderTop: "1px solid #e0e0d8" }}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="badge-primary inline-flex items-center gap-2 mb-4">
+              <Cloud size={14} className="mr-2" />
+              MULTI-CLOUD GOVERNANCE
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#1a1a1a" }}>
+              The Governance Layer Every Cloud Needs
+            </h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: "#666666" }}>
+              Unified governance across every agent platform, every cloud, every environment. Vendor-neutral by design.
+            </p>
+          </div>
+
+          {/* Cloud flow diagram */}
+          <div className="card-base p-8 mb-12">
+            <div className="space-y-6">
+              {/* Cloud platforms grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {['Vertex AI Agents', 'Bedrock Agents', 'Azure AI Agents', 'Agentforce', 'Custom Agents', 'OSS Agents'].map(platform => (
+                  <div key={platform} className="card-base p-3 text-center text-xs font-medium" style={{ color: "#666666" }}>
+                    {platform}
+                  </div>
+                ))}
+              </div>
+
+              {/* Arrow */}
+              <div className="flex justify-center">
+                <ArrowRight size={24} className="rotate-90" style={{ color: "#d97706" }} />
+              </div>
+
+              {/* Lattice layer */}
+              <div className="card-base p-6 text-center" style={{ background: "linear-gradient(to right, rgba(217,119,6,0.1), rgba(245,158,11,0.1))", borderColor: "rgba(217,119,6,0.3)" }}>
+                <div className="font-bold text-xl mb-3" style={{ color: "#1a1a1a" }}>LATTICE</div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="text-xs p-2 rounded" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706" }}>One identity system</div>
+                  <div className="text-xs p-2 rounded" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706" }}>One auth engine</div>
+                  <div className="text-xs p-2 rounded" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706" }}>One audit trail</div>
+                  <div className="text-xs p-2 rounded" style={{ background: "rgba(217,119,6,0.1)", color: "#d97706" }}>One policy framework</div>
+                </div>
+              </div>
+
+              <div className="text-center text-sm" style={{ color: "#666666" }}>
+                Self-hosted. Auditable. Vendor-neutral. Yours.
+              </div>
+            </div>
+          </div>
+
+          {/* Use cases */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            <div className="card-base p-6">
+              <h3 className="font-semibold mb-3 flex items-center" style={{ color: "#1a1a1a" }}>
+                <CheckCircle className="w-4 h-4 mr-2" style={{ color: "#d97706" }} />
+                Multi-Cloud Enterprises
+              </h3>
+              <p className="text-sm" style={{ color: "#666666" }}>
+                Bank deploying across GCP + on-prem? Hospital spanning multiple systems? Lattice provides unified identity, auth, and audit across every environment.
+              </p>
+            </div>
+            <div className="card-base p-6">
+              <h3 className="font-semibold mb-3 flex items-center" style={{ color: "#1a1a1a" }}>
+                <CheckCircle className="w-4 h-4 mr-2" style={{ color: "#d97706" }} />
+                Air-Gapped Deployments
+              </h3>
+              <p className="text-sm" style={{ color: "#666666" }}>
+                Defense, healthcare, government — Lattice runs fully offline with zero internet access. Complete governance in disconnected environments.
+              </p>
+            </div>
+          </div>
+
+          {/* Infrastructure infographic */}
+          <div className="card-base overflow-hidden">
+            <img
+              src="/img/lattice-infrastructure.png"
+              alt="Lattice: The Open-Source Infrastructure for AI Agent Governance"
+              className="w-full h-auto"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
@@ -733,68 +1092,120 @@ function ArchitectureSection() {
           <div className="text-center mb-16">
             <div className="badge-primary inline-flex items-center gap-2 mb-4">
               <GitBranch size={14} className="mr-2" />
-              OPEN CORE ARCHITECTURE
+              FULL STACK ARCHITECTURE
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#1a1a1a" }}>
               How Lattice Works
             </h2>
             <p className="text-lg" style={{ color: "#666666" }}>
-              Lattice operates as a control plane in the execution path, enforcing policies before actions execute.
+              Five components working together — from enforcement kernel to developer interface.
             </p>
           </div>
 
+          {/* Full stack diagram */}
           <div className="card-base p-8 mb-12">
-            <div className="font-mono text-sm">
-              <div className="flex items-center justify-between mb-4" style={{ color: "#d97706" }}>
-                <span>Agent Request</span>
-                <ArrowRight size={16} />
-                <span>Lattice Runtime</span>
-                <ArrowRight size={16} />
-                <span>Policy Evaluation</span>
-                <ArrowRight size={16} />
-                <span style={{ color: "#059669" }}>Allow</span>
-                <span style={{ color: "#e0e0d8" }}>/</span>
-                <span style={{ color: "#dc2626" }}>Deny</span>
+            <div className="font-mono text-sm space-y-4">
+              {/* Your Agents layer */}
+              <div className="card-base p-3 text-center text-xs font-medium" style={{ color: "#666666", borderStyle: "dashed" }}>
+                YOUR AGENTS &middot; LangChain &middot; CrewAI &middot; AutoGen &middot; Custom
               </div>
-              <div className="flex justify-center" style={{ color: "#e0e0d8" }}>
-                <ArrowRight size={16} className="rotate-90" />
+
+              {/* Arrow */}
+              <div className="flex justify-center">
+                <ArrowRight size={16} className="rotate-90" style={{ color: "#e0e0d8" }} />
               </div>
-              <div className="text-center" style={{ color: "#3b82f6" }}>
-                Audit Event Generated
+
+              {/* Lattice HQ */}
+              <div className="card-base p-6" style={{ borderColor: "rgba(217,119,6,0.3)" }}>
+                <div className="text-center font-bold text-xs tracking-wider mb-4" style={{ color: "#d97706" }}>
+                  L A T T I C E&nbsp;&nbsp;&nbsp;A G E N T&nbsp;&nbsp;&nbsp;H Q
+                </div>
+
+                {/* Top: Workbench */}
+                <div className="card-base p-3 mb-3 text-center" style={{ background: "rgba(217,119,6,0.05)" }}>
+                  <div className="text-xs font-medium" style={{ color: "#1a1a1a" }}>WORKBENCH</div>
+                  <div className="text-[10px]" style={{ color: "#999999" }}>Agent Chat &middot; Operations &middot; Monitoring &middot; Desktop / Web / CLI / VS Code</div>
+                </div>
+
+                {/* Middle: Runtime (4 gates) */}
+                <div className="card-base p-3 mb-3" style={{ background: "rgba(217,119,6,0.05)" }}>
+                  <div className="text-xs font-medium text-center mb-2" style={{ color: "#1a1a1a" }}>RUNTIME</div>
+                  <div className="grid grid-cols-4 gap-2">
+                    <div className="text-center p-2 rounded" style={{ background: "rgba(217,119,6,0.1)" }}>
+                      <div className="text-[10px] font-medium" style={{ color: "#d97706" }}>Identity</div>
+                    </div>
+                    <div className="text-center p-2 rounded" style={{ background: "rgba(217,119,6,0.1)" }}>
+                      <div className="text-[10px] font-medium" style={{ color: "#d97706" }}>Auth</div>
+                    </div>
+                    <div className="text-center p-2 rounded" style={{ background: "rgba(217,119,6,0.1)" }}>
+                      <div className="text-[10px] font-medium" style={{ color: "#d97706" }}>Audit</div>
+                    </div>
+                    <div className="text-center p-2 rounded" style={{ background: "rgba(217,119,6,0.1)" }}>
+                      <div className="text-[10px] font-medium" style={{ color: "#d97706" }}>Constraints</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom: Inference + Registry side by side */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="card-base p-3 text-center" style={{ background: "rgba(217,119,6,0.05)" }}>
+                    <div className="text-xs font-medium" style={{ color: "#1a1a1a" }}>INFERENCE</div>
+                    <div className="text-[10px]" style={{ color: "#999999" }}>MLX &middot; CUDA &middot; OpenAI API</div>
+                  </div>
+                  <div className="card-base p-3 text-center" style={{ background: "rgba(217,119,6,0.05)" }}>
+                    <div className="text-xs font-medium" style={{ color: "#1a1a1a" }}>REGISTRY</div>
+                    <div className="text-[10px]" style={{ color: "#999999" }}>Templates &middot; Modules &middot; Presets</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex justify-center">
+                <ArrowRight size={16} className="rotate-90" style={{ color: "#e0e0d8" }} />
+              </div>
+
+              {/* Your Infrastructure layer */}
+              <div className="card-base p-3 text-center text-xs font-medium" style={{ color: "#666666", borderStyle: "dashed" }}>
+                YOUR INFRASTRUCTURE &middot; Laptop &middot; Homelab &middot; Docker &middot; K8s &middot; Cloud &middot; Air Gap
               </div>
             </div>
           </div>
 
+          {/* Open Core model */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="card-base p-8">
               <h3 className="font-bold mb-6 flex items-center" style={{ color: "#1a1a1a" }}>
                 <CheckSquare className="w-5 h-5 mr-2" style={{ color: "#d97706" }} />
-                Open Source (Apache 2.0)
+                Open Source (Apache 2.0 / MIT)
               </h3>
               <p className="text-sm mb-4" style={{ color: "#666666" }}>
-                The runtime enforcement layer is fully open source and auditable. This includes all components that evaluate and enforce policies.
+                Runtime, Inference, Workbench, and Registry are fully open source and auditable.
               </p>
               <ul className="space-y-2">
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>✓</span>
+                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&#10003;</span>
                   Identity and authorization evaluation
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>✓</span>
+                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&#10003;</span>
                   Policy decision engine
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>✓</span>
+                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&#10003;</span>
                   Audit event generation
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>✓</span>
-                  Self-hosted deployment primitives
+                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&#10003;</span>
+                  Local LLM inference serving
+                </li>
+                <li className="text-sm flex items-start" style={{ color: "#666666" }}>
+                  <span className="mr-2 font-mono" style={{ color: "#d97706" }}>&#10003;</span>
+                  Agent IDE and operations console
                 </li>
               </ul>
               <div className="mt-4 p-3 rounded-md" style={{ background: "rgba(217,119,6,0.05)", border: "1px solid rgba(217,119,6,0.2)" }}>
                 <p className="text-xs" style={{ color: "#d97706" }}>
-                  <strong>Why open?</strong> Enterprises must inspect enforcement logic. Trust cannot depend on vendor opacity.
+                  <strong>Why open?</strong> Enforcement must be auditable. If the software decides &quot;allow&quot; or &quot;deny,&quot; you can read the code.
                 </p>
               </div>
             </div>
@@ -805,75 +1216,216 @@ function ArchitectureSection() {
                 Commercial (Enterprise Edition)
               </h3>
               <p className="text-sm mb-4" style={{ color: "#666666" }}>
-                Enterprise control, governance, and administration features are commercially licensed for enterprise use.
+                Enterprise governance, administration, and compliance features for organizations at scale.
               </p>
               <ul className="space-y-2">
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>✓</span>
+                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>&#10003;</span>
                   Administrative control planes
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>✓</span>
+                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>&#10003;</span>
                   Policy lifecycle management
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>✓</span>
-                  Directory integrations (LDAP, SAML, OIDC)
+                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>&#10003;</span>
+                  Directory integrations (AD, Okta, LDAP, SAML)
                 </li>
                 <li className="text-sm flex items-start" style={{ color: "#666666" }}>
-                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>✓</span>
-                  Compliance reporting and exports
+                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>&#10003;</span>
+                  Compliance exports (SOC2, HIPAA, FedRAMP)
+                </li>
+                <li className="text-sm flex items-start" style={{ color: "#666666" }}>
+                  <span className="mr-2 font-mono" style={{ color: "#f59e0b" }}>&#10003;</span>
+                  Multi-tenant organizational governance
                 </li>
               </ul>
               <div className="mt-4 p-3 rounded-md" style={{ background: "rgba(245,158,11,0.05)", border: "1px solid rgba(245,158,11,0.2)" }}>
                 <p className="text-xs" style={{ color: "#f59e0b" }}>
-                  <strong>Why commercial?</strong> These components don&apos;t decide &quot;allow vs deny&quot;—they standardize operation at scale.
+                  <strong>Why commercial?</strong> These components don&apos;t decide &quot;allow vs deny&quot; — they standardize operation at scale.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="card-base p-8">
-            <h3 className="font-bold mb-4" style={{ color: "#1a1a1a" }}>Getting Started</h3>
-            <div className="code-block">
-              <div className="mb-2" style={{ color: "#d97706" }}># Install Lattice Runtime (coming soon)</div>
-              <div style={{ color: "#666666" }}>$ curl -fsSL https://latticeruntime.com/install.sh | sh</div>
-              <div className="mt-4" style={{ color: "#666666" }}>$ lattice init</div>
-              <div style={{ color: "#666666" }}>$ lattice enforce --config ./policies.yml</div>
+          {/* Technical overview infographic */}
+          <div className="card-base overflow-hidden">
+            <img
+              src="/img/lattice-technical-overview.png"
+              alt="Lattice: Technical Architecture Overview"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Quick Start Section
+function QuickStartSection() {
+  return (
+    <section id="quickstart" className="py-24 relative" style={{ borderTop: "1px solid #e0e0d8" }}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="badge-primary inline-flex items-center gap-2 mb-4">
+              <Terminal size={14} className="mr-2" />
+              QUICK START
             </div>
-            <p className="text-sm mt-4" style={{ color: "#666666" }}>
-              Documentation, examples, and API references coming soon. Star the project on GitHub to follow development.
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#1a1a1a" }}>
+              Up and Running in Three Commands
+            </h2>
+            <p className="text-lg" style={{ color: "#666666" }}>
+              Install Lattice, start your headquarters, deploy your first agent.
             </p>
-            <div className="grid grid-cols-3 gap-4 mt-6 pt-6" style={{ borderTop: "1px solid #e0e0d8" }}>
-              <a
-                href="https://registry.latticeruntime.com/modules"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm hover:text-[#d97706] transition"
-                style={{ color: "#666666" }}
-              >
-                <Package size={16} style={{ color: "#d97706" }} />
-                Browse Modules
-              </a>
-              <a
-                href="https://registry.latticeruntime.com/templates"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm hover:text-[#d97706] transition"
-                style={{ color: "#666666" }}
-              >
-                <Box size={16} style={{ color: "#d97706" }} />
-                Explore Templates
-              </a>
-              <a
-                href="https://registry.latticeruntime.com/presets"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm hover:text-[#d97706] transition"
-                style={{ color: "#666666" }}
-              >
-                <Sparkles size={16} style={{ color: "#d97706" }} />
-                Discover Presets
+          </div>
+
+          <div className="card-base p-8 mb-8">
+            <div className="code-block">
+              <div style={{ color: "#d97706" }}># Install via Homebrew (macOS / Linux)</div>
+              <div style={{ color: "#666666" }}>$ brew install latticehq/lattice/lattice</div>
+              <div className="mt-4" style={{ color: "#d97706" }}># Start Agent Headquarters</div>
+              <div style={{ color: "#666666" }}>$ lattice server</div>
+              <div className="mt-4" style={{ color: "#d97706" }}># Deploy an agent with full governance</div>
+              <div style={{ color: "#666666" }}>$ lattice create my-agent --template docker</div>
+              <div className="mt-4" style={{ color: "#d97706" }}># Serve local models (optional)</div>
+              <div style={{ color: "#666666" }}>$ lattice inference serve --model mlx-community/Llama-3.2-3B-Instruct-4bit</div>
+              <div className="mt-4" style={{ color: "#d97706" }}># Open the Workbench (optional)</div>
+              <div style={{ color: "#666666" }}>$ lattice workbench</div>
+            </div>
+          </div>
+
+          {/* What you get */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+            <div className="card-base p-4">
+              <Key size={16} className="mb-2" style={{ color: "#d97706" }} />
+              <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Cryptographic Identity</div>
+              <div className="text-xs" style={{ color: "#666666" }}>Not a shared API key — a unique, verifiable principal.</div>
+            </div>
+            <div className="card-base p-4">
+              <Lock size={16} className="mb-2" style={{ color: "#d97706" }} />
+              <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Permission Controls</div>
+              <div className="text-xs" style={{ color: "#666666" }}>What your agent can and cannot do, enforced at runtime.</div>
+            </div>
+            <div className="card-base p-4">
+              <FileText size={16} className="mb-2" style={{ color: "#d97706" }} />
+              <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Immutable Audit Trail</div>
+              <div className="text-xs" style={{ color: "#666666" }}>Every action logged, tamper-evident, compliance-ready.</div>
+            </div>
+            <div className="card-base p-4">
+              <Cpu size={16} className="mb-2" style={{ color: "#d97706" }} />
+              <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Local Inference</div>
+              <div className="text-xs" style={{ color: "#666666" }}>No API costs. Data never leaves your machine.</div>
+            </div>
+            <div className="card-base p-4">
+              <Monitor size={16} className="mb-2" style={{ color: "#d97706" }} />
+              <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Web Dashboard</div>
+              <div className="text-xs" style={{ color: "#666666" }}>Monitor everything in the Workbench at localhost:3000.</div>
+            </div>
+            <div className="card-base p-4">
+              <Package size={16} className="mb-2" style={{ color: "#d97706" }} />
+              <div className="font-semibold text-sm" style={{ color: "#1a1a1a" }}>Community Templates</div>
+              <div className="text-xs" style={{ color: "#666666" }}>Docker, K8s, AWS, GCP, Azure — deploy anywhere.</div>
+            </div>
+          </div>
+
+          {/* Registry links */}
+          <div className="grid grid-cols-3 gap-4">
+            <a
+              href="https://registry.latticeruntime.com/modules"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-interactive p-4 flex items-center gap-2 text-sm"
+              style={{ color: "#666666" }}
+            >
+              <Package size={16} style={{ color: "#d97706" }} />
+              Browse Modules
+            </a>
+            <a
+              href="https://registry.latticeruntime.com/templates"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-interactive p-4 flex items-center gap-2 text-sm"
+              style={{ color: "#666666" }}
+            >
+              <Box size={16} style={{ color: "#d97706" }} />
+              Explore Templates
+            </a>
+            <a
+              href="https://registry.latticeruntime.com/presets"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-interactive p-4 flex items-center gap-2 text-sm"
+              style={{ color: "#666666" }}
+            >
+              <Sparkles size={16} style={{ color: "#d97706" }} />
+              Discover Presets
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Audience Section
+function AudienceSection() {
+  return (
+    <section id="audiences" className="py-24 relative" style={{ borderTop: "1px solid #e0e0d8" }}>
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="badge-primary inline-flex items-center gap-2 mb-4">
+              <Users size={14} className="mr-2" />
+              WHO IT&apos;S FOR
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#1a1a1a" }}>
+              Same Platform. Every Scale.
+            </h2>
+            <p className="text-lg" style={{ color: "#666666" }}>
+              From a weekend hack to Fortune 500 production — Lattice grows with you.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="card-base p-6">
+              <div className="icon-container mb-4">
+                <Terminal className="w-5 h-5" style={{ color: "#d97706" }} />
+              </div>
+              <h3 className="font-semibold mb-2" style={{ color: "#1a1a1a" }}>Weekend Hackers</h3>
+              <p className="text-sm mb-4" style={{ color: "#666666" }}>
+                brew install and go. Free local inference, no API bill, no credit card. Your agents run on your machine with full governance.
+              </p>
+              <div className="code-block p-2 text-xs">
+                <span style={{ color: "#666666" }}>$ brew install latticehq/lattice/lattice</span>
+              </div>
+            </div>
+
+            <div className="card-base p-6">
+              <div className="icon-container mb-4">
+                <Zap className="w-5 h-5" style={{ color: "#d97706" }} />
+              </div>
+              <h3 className="font-semibold mb-2" style={{ color: "#1a1a1a" }}>Startup Founders</h3>
+              <p className="text-sm mb-4" style={{ color: "#666666" }}>
+                Enterprise-grade governance from day one. Ship to enterprises without hiring a platform team. SOC2 and HIPAA compliance built in.
+              </p>
+              <div className="code-block p-2 text-xs">
+                <span style={{ color: "#666666" }}>$ lattice create my-saas --template k8s</span>
+              </div>
+            </div>
+
+            <div className="card-base p-6">
+              <div className="icon-container mb-4" style={{ background: "rgba(245,158,11,0.1)", borderColor: "rgba(245,158,11,0.3)" }}>
+                <Building className="w-5 h-5" style={{ color: "#f59e0b" }} />
+              </div>
+              <h3 className="font-semibold mb-2" style={{ color: "#1a1a1a" }}>Enterprise Platform Teams</h3>
+              <p className="text-sm mb-4" style={{ color: "#666666" }}>
+                Unified governance across every cloud, every system. Self-hosted, auditable, vendor-neutral. Integrates with AD, Okta, LDAP.
+              </p>
+              <a href="mailto:enterprise@latticeruntime.com" className="text-xs font-mono hover:underline" style={{ color: "#f59e0b" }}>
+                enterprise@latticeruntime.com
               </a>
             </div>
           </div>
@@ -894,22 +1446,22 @@ function ContactSection() {
             GET IN TOUCH
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: "#1a1a1a" }}>
-            Join the Development
+            Join the Community
           </h2>
           <p className="text-lg mb-12" style={{ color: "#666666" }}>
-            Lattice is in active development. We welcome contributions, feedback, and early adopters.
+            Lattice is in active development across five open-source repositories. We welcome contributions, feedback, and early adopters.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <a
-              href="https://github.com/latticeHQ/lattice-runtime"
+              href="https://github.com/latticeHQ"
               target="_blank"
               rel="noopener noreferrer"
               className="card-interactive p-6 group"
             >
               <Github className="w-8 h-8 mx-auto mb-3 group-hover:scale-110 transition" style={{ color: "#d97706" }} />
               <h3 className="font-semibold mb-2" style={{ color: "#1a1a1a" }}>GitHub</h3>
-              <p className="text-sm" style={{ color: "#666666" }}>View source, report issues, contribute code</p>
+              <p className="text-sm" style={{ color: "#666666" }}>View the ecosystem, report issues, contribute code</p>
             </a>
 
             <a
@@ -960,10 +1512,10 @@ function Footer() {
             <div className="w-6 h-6 flex items-center justify-center" style={{ background: "#f5f5f0", border: "2px solid rgba(217,119,6,0.3)" }}>
               <Shield className="w-4 h-4" style={{ color: "#d97706" }} />
             </div>
-            <span className="font-bold" style={{ color: "#1a1a1a" }}>Lattice Runtime</span>
+            <span className="font-bold" style={{ color: "#1a1a1a" }}>Lattice &mdash; Agent HQ</span>
           </div>
 
-          <div className="flex items-center space-x-6 text-sm" style={{ color: "#666666" }}>
+          <div className="flex items-center flex-wrap justify-center space-x-6 text-sm" style={{ color: "#666666" }}>
             <a href="https://registry.latticeruntime.com/modules" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
               Modules
             </a>
@@ -973,20 +1525,20 @@ function Footer() {
             <a href="https://registry.latticeruntime.com/presets" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
               Presets
             </a>
-            <a href="https://github.com/latticeHQ/lattice-runtime" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
+            <a href="https://github.com/latticeHQ" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
               GitHub
             </a>
             <a href="/docs" className="hover:text-[#d97706] transition">
               Documentation
             </a>
-            <a href="https://github.com/latticeHQ/lattice-runtime/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
+            <a href="https://github.com/latticeHQ/latticeRuntime/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
               Apache 2.0 License
             </a>
           </div>
         </div>
 
         <div className="mt-8 pt-6 text-center text-xs" style={{ borderTop: "1px solid #e0e0d8", color: "#999999" }}>
-          <p>© 2026 Lattice Runtime. Open source runtime enforcement for autonomous AI sidecars.</p>
+          <p>&copy; 2026 Lattice. The open-source headquarters for AI agents. Your agents. Your models. Your rules. Your infrastructure.</p>
         </div>
       </div>
     </footer>
