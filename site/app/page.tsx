@@ -315,24 +315,71 @@ function HeroSection({ consoleLines, showCursor }: { consoleLines: string[], sho
           </div>
 
           <div className="relative">
-            <div className="card-base relative overflow-hidden" style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
-              <div className="py-3 px-4 flex items-center text-sm" style={{ background: "#fafaf8", borderBottom: "1px solid #e0e0d8" }}>
-                <Terminal size={14} className="mr-2" style={{ color: "#d97706" }} />
-                <span className="font-medium font-mono text-sm" style={{ color: "#666666" }}>lattice_agent_hq</span>
-                <div className="ml-auto flex gap-2">
-                  <div className="w-2 h-2 rounded-full" style={{ background: "#e0e0d8" }}></div>
-                  <div className="w-2 h-2 rounded-full" style={{ background: "#e0e0d8" }}></div>
-                  <div className="w-2 h-2 rounded-full" style={{ background: "#d97706" }}></div>
+            {/* Glow effect behind terminal */}
+            <div className="absolute -inset-4 rounded-2xl opacity-30 blur-2xl" style={{ background: "radial-gradient(ellipse at center, rgba(217, 119, 6, 0.15), transparent 70%)" }}></div>
+
+            <div className="relative overflow-hidden rounded-xl" style={{ background: "#1a1b26", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05)" }}>
+              {/* Title bar */}
+              <div className="flex items-center px-4 py-3" style={{ background: "#16171f", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="flex gap-2 mr-4">
+                  <div className="w-3 h-3 rounded-full" style={{ background: "#ff5f57" }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ background: "#febc2e" }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ background: "#28c840" }}></div>
                 </div>
+                <div className="flex-1 text-center">
+                  <span className="font-mono text-xs tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>lattice — agent_hq — zsh — 80×24</span>
+                </div>
+                <div className="w-16"></div>
               </div>
 
-              <div className="code-block p-6 font-mono text-sm h-96 overflow-auto">
-                {consoleLines.map((line, index) => (
-                  <div key={index} style={{ color: line.startsWith('✓') ? "#059669" : line.startsWith('→') ? "#999999" : line.startsWith('$') ? "#d97706" : "#666666" }}>
-                    {line}
-                  </div>
-                ))}
-                {showCursor && <span className="inline-block w-2 h-4 ml-1 align-text-bottom animate-pulse" style={{ background: "#d97706" }}></span>}
+              {/* Terminal body */}
+              <div className="p-5 font-mono text-sm h-96 overflow-auto" style={{ background: "#1a1b26", lineHeight: "1.7" }}>
+                {consoleLines.map((line, index) => {
+                  if (line === '') return <div key={index} className="h-2"></div>;
+
+                  const isCommand = line.startsWith('$');
+                  const isSuccess = line.startsWith('✓');
+                  const isAction = line.startsWith('→');
+                  const isInstalling = line.startsWith('Installing') || line.startsWith('Initializing');
+                  const isFinalMessage = line === 'Agent HQ ready. Your agents. Your rules.';
+
+                  return (
+                    <div key={index} className="flex items-start" style={{ minHeight: "1.5em" }}>
+                      {isCommand ? (
+                        <span>
+                          <span style={{ color: "#7aa2f7" }}>❯</span>
+                          <span style={{ color: "#c0caf5" }}>{line.slice(1)}</span>
+                        </span>
+                      ) : isSuccess ? (
+                        <span>
+                          <span style={{ color: "#9ece6a" }}>✓</span>
+                          <span style={{ color: "#a9b1d6" }}>{line.slice(1)}</span>
+                        </span>
+                      ) : isAction ? (
+                        <span>
+                          <span style={{ color: "#e0af68" }}>→</span>
+                          <span style={{ color: "#787c99" }}>{line.slice(1)}</span>
+                        </span>
+                      ) : isInstalling ? (
+                        <span style={{ color: "#787c99", fontStyle: "italic" }}>{line}</span>
+                      ) : isFinalMessage ? (
+                        <span className="font-medium" style={{ color: "#bb9af7" }}>{line}</span>
+                      ) : (
+                        <span style={{ color: "#565a6e" }}>{line}</span>
+                      )}
+                    </div>
+                  );
+                })}
+                {showCursor && (
+                  <span className="inline-block w-2 h-5 ml-1 align-text-bottom animate-pulse rounded-sm" style={{ background: "#7aa2f7", opacity: 0.8 }}></span>
+                )}
+              </div>
+
+              {/* Status bar */}
+              <div className="flex items-center justify-between px-4 py-1.5 font-mono" style={{ background: "#16171f", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: "10px", color: "rgba(255,255,255,0.25)" }}>
+                <span>zsh</span>
+                <span>lattice v0.1.0</span>
+                <span>utf-8</span>
               </div>
             </div>
           </div>
