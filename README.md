@@ -12,14 +12,14 @@ brew install latticehq/lattice/lattice
 This repository contains the public website for [latticeruntime.com](https://latticeruntime.com).
 
 <div align="center">
-  <img src="../docs/img/lattice-headquarters.png" alt="Lattice: The Open-Source Headquarters for AI Agent Governance" width="100%" />
+  <img src="docs/img/lattice-headquarters.png" alt="Lattice: The Open-Source Headquarters for AI Agent Governance" width="100%" />
 </div>
 
 ## See It in Action
 
 <div align="center">
 
-[▶️ Watch the full ecosystem preview](../docs/img/lattice-ecosystem-preview.mp4)
+[▶️ Watch the full ecosystem preview](https://latticeruntime.com)
 
 </div>
 
