@@ -1,106 +1,89 @@
-# Lattice Runtime
+# Lattice — Agent Headquarters
 
-**Runtime enforcement infrastructure for autonomous AI agents**
+### The open-source runtime for AI agents.
 
-Lattice is a runtime enforcement layer that applies identity, authorization, audit, and deployment constraints to AI agents. It sits in the execution path, so violations are blocked by design, not by application code.
-
-## Overview
-
-As AI agents become autonomous—taking actions, accessing systems, and making decisions—enterprises require guarantees that are:
-
-- **Enforced at runtime** - violations are blocked structurally, not by application discipline
-- **Provable and auditable** - enforcement decisions are transparent and inspectable
-- **Independent of application code** - trust is a property of the runtime, not the team
-
-Lattice decouples enterprise enforcement from agent implementation, providing identity, authorization, audit, and deployment constraints as enforced runtime primitives.
-
-**Lattice lets individuals ship software that enterprises can trust.**
-
-## Why Lattice?
-
-Traditional approach:
-- Every AI company re-implements SSO, RBAC, audit logs, and compliance controls
-- Enterprise readiness is coupled to organizational scale
-- Trust depends on application code and team maturity
-
-Lattice approach:
-- Enforcement is moved into the runtime itself
-- Developers declare constraints once, Lattice enforces them centrally
-- Enterprise-grade enforcement becomes structural, not organizational
-
-As developers grow and close enterprise deals, Lattice grows with them.
-
-## What Lattice Enforces
-
-### Identity
-Verifies who or what is requesting an action across cloud, self-hosted, and air-gapped environments.
-
-### Authorization
-Evaluates whether an authenticated principal is allowed to perform a specific action.
-
-### Audit
-Generates tamper-evident records of all enforcement decisions and agent actions.
-
-### Deployment Constraints
-Ensures agents run only within approved boundaries and configurations.
-
-## Architecture
-
-Lattice operates as a control plane in the execution path:
+**Your agents. Your models. Your rules. Your infrastructure.**
 
 ```
-Agent Request → Lattice Runtime → Enforcement Decision → Allow/Deny
-                      ↓
-                Audit Event Generated
+brew install latticehq/lattice/lattice
+
 ```
 
-Enforcement logic is evaluated before actions are executed, making violations impossible by construction.
+This repository contains the public website for [latticeruntime.com](https://latticeruntime.com).
 
-## Open-Core Model
+<div align="center">
+  <img src="../docs/img/lattice-headquarters.png" alt="Lattice: The Open-Source Headquarters for AI Agent Governance" width="100%" />
+</div>
 
-Lattice follows an open-core architecture:
+## See It in Action
 
-**Open Source (this repository):**
-- Runtime enforcement layer
-- Identity and authorization evaluation
-- Policy decision engine
-- Audit event generation
-- Self-hosted deployment primitives
+<div align="center">
 
-**Commercial (Enterprise Edition):**
-- Administrative control planes
-- Policy lifecycle management (versioning, approvals, rollbacks)
-- Organizational governance and tenancy
-- Directory and identity provider integrations
-- Compliance reporting and long-term support
+[▶️ Watch the full ecosystem preview](../docs/img/lattice-ecosystem-preview.mp4)
 
-See [VISION.md](./VISION.md) for the complete rationale.
+</div>
 
-## Getting Started
+## The Lattice Ecosystem
+
+Lattice is **Agent Headquarters** — the open-source runtime where AI agents get their identity, their permissions, their compute, and their orders. From a solo developer on a MacBook to a Fortune 500 across every cloud.
+
+| Component | Role | Repository |
+|-----------|------|------------|
+| [**Runtime**](https://github.com/latticeHQ/lattice) | Enforcement kernel — identity, authorization, audit, deployment constraints | [latticeRuntime](https://github.com/latticeHQ/lattice) |
+| [**Inference**](https://github.com/latticeHQ/lattice-inference) | Local LLM serving — MLX, CUDA, zero-config clustering, OpenAI-compatible API | [latticeInference](https://github.com/latticeHQ/lattice-inference) |
+| [**Workbench**](https://github.com/latticeHQ/lattice-workbench) | Agent IDE & operations console — multi-model chat, monitoring, desktop/web/CLI | [latticeWorkbench](https://github.com/latticeHQ/lattice-workbench) |
+| [**Registry**](https://github.com/latticeHQ/lattice-registry) | Community ecosystem — templates, modules, presets for Docker/K8s/AWS/GCP/Azure | [latticeRegistry](https://github.com/latticeHQ/lattice-registry) |
+| **Public** (this repo) | Website — latticeruntime.com | You are here |
+
+## What Lattice Does
+
+Every agent action passes through four enforcement gates:
+
+1. **Identity** — Cryptographic verification of who or what is acting
+2. **Authorization** — Policy-as-code evaluation of whether the action is allowed
+3. **Deployment Constraints** — Structural boundaries on where and how agents execute
+4. **Audit** — Immutable, tamper-evident logging of every decision
+
+If any gate fails, the action is blocked. Policy violations are structurally impossible.
+
+## Who It's For
+
+- **Developers**: `brew install latticehq/lattice/lattice` — identity, auth, audit, and local inference for free. No cloud. No API bill.
+- **Startups**: Enterprise-grade governance from day one. Ship to Fortune 500 without a platform team.
+- **Enterprises**: Unified governance across every agent, every cloud, every system. Self-hosted. Auditable.
+- **Cloud Vendors**: The governance layer that makes your agent platforms sellable to enterprises that can't adopt them today.
+
+## Open Source
+
+- **Runtime**: Apache 2.0 — enforcement kernel
+- **Inference**: Apache 2.0 — local model serving
+- **Workbench**: MIT — agent IDE and operations console
+- **Registry**: Apache 2.0 — community templates and modules
+
+Everything that makes trust decisions is open source. If it decides allow or deny, you can read the code.
+
+## Development (This Site)
 
 ```bash
-# Installation instructions coming soon
+cd site
+npm install
+npm run dev
 ```
 
-## Documentation
+## Links
 
-- [Vision and Philosophy](./VISION.md)
-- [Architecture](./ARCHITECTURE.md) _(coming soon)_
-- [Deployment Guide](./DEPLOYMENT.md) _(coming soon)_
-- [API Reference](./API.md) _(coming soon)_
+- [Website](https://latticeruntime.com)
+- [Vision](./VISION.md)
+- [Contributing](./CONTRIBUTING.md)
+- [Security](./SECURITY.md)
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
 
-## Contributing
+---
 
-We welcome contributions to the runtime enforcement layer. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+<div align="center">
 
-## License
+**[Lattice — Agent Headquarters](https://latticeruntime.com)**
 
-The Lattice runtime enforcement layer is licensed under [Apache 2.0](./LICENSE).
+Your agents. Your models. Your rules. Your infrastructure.
 
-Enterprise features are licensed separately under a commercial license.
-
-## Security
-
-Report security vulnerabilities to security@latticeruntime.com
-
-See [SECURITY.md](./SECURITY.md) for details.
+</div>
