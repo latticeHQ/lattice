@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lattice Runtime - Enforcement Infrastructure for AI Agents",
-  description: "Runtime enforcement for AI sidecars with cryptographically-verified identity, zero-trust authorization, immutable audit, and deployment constraints",
+  title: "Lattice — Agent Headquarters | The Open-Source Runtime for AI Agents",
+  description: "The open-source headquarters for AI agents. Identity, authorization, audit, inference, and operations — self-hosted, vendor-neutral, runs anywhere. brew install latticehq/lattice/lattice",
 };
 
 export default function RootLayout({
