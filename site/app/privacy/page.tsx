@@ -413,11 +413,17 @@ export default function PrivacyPolicy() {
               <a href="https://github.com/latticeHQ" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
                 GitHub
               </a>
-              <a href="/docs" className="hover:text-[#d97706] transition">
-                Documentation
+              <a href="/privacy" className="hover:text-[#d97706] transition">
+                Privacy
               </a>
-              <a href="https://github.com/latticeHQ/latticeRuntime/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
-                Apache 2.0 License
+              <a href="/terms" className="hover:text-[#d97706] transition">
+                Terms
+              </a>
+              <a href="/eula" className="hover:text-[#d97706] transition">
+                EULA
+              </a>
+              <a href="/support" className="hover:text-[#d97706] transition">
+                Support
               </a>
             </div>
           </div>

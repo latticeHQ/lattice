@@ -1535,7 +1535,16 @@ function Footer() {
               Apache 2.0 License
             </a>
             <a href="/privacy" className="hover:text-[#d97706] transition">
-              Privacy Policy
+              Privacy
+            </a>
+            <a href="/terms" className="hover:text-[#d97706] transition">
+              Terms
+            </a>
+            <a href="/eula" className="hover:text-[#d97706] transition">
+              EULA
+            </a>
+            <a href="/support" className="hover:text-[#d97706] transition">
+              Support
             </a>
           </div>
         </div>
