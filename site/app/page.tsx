@@ -1534,6 +1534,9 @@ function Footer() {
             <a href="https://github.com/latticeHQ/latticeRuntime/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="hover:text-[#d97706] transition">
               Apache 2.0 License
             </a>
+            <a href="/privacy" className="hover:text-[#d97706] transition">
+              Privacy Policy
+            </a>
           </div>
         </div>
 
