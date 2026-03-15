@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We are committed to providing a welcoming and inclusive environment for everyone contributing to Lattice Runtime, regardless of experience level, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, religion, nationality, or other protected characteristics.
+We are committed to providing a welcoming and inclusive environment for everyone contributing to the Lattice ecosystem, regardless of experience level, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, religion, nationality, or other protected characteristics.
 
 We pledge to make participation in this project a harassment-free experience for everyone.
 
@@ -10,12 +10,12 @@ We pledge to make participation in this project a harassment-free experience for
 
 ### Expected Behavior
 
-- **Be respectful** - Value differing viewpoints and experiences
-- **Be collaborative** - Work together towards the best outcomes
-- **Be professional** - Keep discussions technical and constructive
-- **Be inclusive** - Welcome newcomers and help them contribute
-- **Assume good intent** - Approach disagreements with curiosity, not hostility
-- **Give and accept constructive feedback** - Focus on improving the project
+- **Be respectful** — Value differing viewpoints and experiences
+- **Be collaborative** — Work together towards the best outcomes
+- **Be professional** — Keep discussions technical and constructive
+- **Be inclusive** — Welcome newcomers and help them contribute
+- **Assume good intent** — Approach disagreements with curiosity, not hostility
+- **Give and accept constructive feedback** — Focus on improving the project
 
 ### Unacceptable Behavior
 
@@ -40,9 +40,9 @@ All reports will be handled with discretion and confidentiality.
 
 Project maintainers are responsible for clarifying standards and will take appropriate action in response to violations, including:
 
-- **Warning** - Private, written clarification about the violation
-- **Temporary ban** - Temporary suspension from interaction
-- **Permanent ban** - Permanent removal from the project
+- **Warning** — Private, written clarification about the violation
+- **Temporary ban** — Temporary suspension from interaction
+- **Permanent ban** — Permanent removal from the project
 
 Actions will be fair, proportionate, and focused on maintaining a healthy community.
 
