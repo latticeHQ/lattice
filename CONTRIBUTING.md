@@ -24,8 +24,8 @@ This repository contains the **runtime enforcement layer**, which includes:
 
 ```bash
 # Clone the repository
-git clone git@github.com:latticeHQ/lattice-runtime.git
-cd lattice-runtime
+git clone git@github.com:latticeHQ/latticeRuntime.git
+cd latticeRuntime
 
 # Install dependencies
 make deps
@@ -161,9 +161,8 @@ See [LICENSE](./LICENSE) for details.
 
 ## Questions?
 
-- Open a discussion in GitHub Discussions
-- Join our community chat _(add link if applicable)_
-- Read the documentation at _(add link)_
+- [GitHub Discussions](https://github.com/latticeHQ/latticeRuntime/discussions)
+- [Website](https://latticeruntime.com)
 
 ---
 

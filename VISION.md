@@ -1,6 +1,6 @@
 # Vision
 
-## Lattice — Agent Headquarters
+## Lattice — The Coordination Layer for Institutional AI
 
 AI enables individual developers and very small teams to build software that can reason, plan, and act. This dramatically increases leverage — but it also raises the bar for trust.
 
@@ -55,13 +55,13 @@ Lattice is not a single tool — it's an integrated platform:
 
 | Component | Role | License |
 |-----------|------|---------|
-| **Lattice Runtime** | Enforcement kernel — identity, authorization, audit, deployment constraints | Apache 2.0 |
-| **Lattice Inference** | Local LLM serving — MLX, CUDA, zero-config clustering, OpenAI-compatible API | Apache 2.0 |
-| **Lattice Workbench** | Agent IDE & operations console — multi-model chat, monitoring, desktop/web/CLI | MIT |
-| **Lattice Registry** | Community ecosystem — templates, modules, presets | Apache 2.0 |
+| **Lattice Runtime** | Coordination layer — identity, authorization, audit, budget | Apache 2.0 |
+| **Lattice Inference** | Local AI serving — MLX, CUDA, zero-config clustering, OpenAI-compatible API | Apache 2.0 |
+| **Lattice Workbench** | Reference Engineering Stack — multi-model agent workspace, desktop/web/CLI | MIT |
+| **Lattice Registry** | Community ecosystem — Terraform modules, templates, stacks | Apache 2.0 |
 | **Lattice Enterprise** | Governance at scale — admin, compliance, directory integration | Commercial |
 
-Together, these components form **Agent Headquarters** — where AI agents get their identity, their permissions, their compute, and their orders.
+Together, these components form the coordination layer for institutional AI — governing how agents authenticate, communicate, and operate across an organization.
 
 ## The Impact
 
@@ -158,7 +158,7 @@ This is not a business decision first. It is a systems decision.
 
 ## Summary
 
-Lattice is Agent Headquarters — the open-source runtime for AI agents.
+Lattice is the open-source coordination layer for institutional AI.
 
 It is open where correctness and trust matter most, and commercial where standardization, accountability, and long-term operation matter.
 
@@ -166,4 +166,4 @@ This structure allows Lattice to function as **shared enforcement infrastructure
 
 The agent economy needs a trust layer. Lattice is that layer — open, self-hosted, vendor-neutral, and inevitable.
 
-**Your agents. Your models. Your rules. Your infrastructure.**
+**Individual AI makes people productive. Institutional AI makes organizations work.**
