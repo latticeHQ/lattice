@@ -55,11 +55,13 @@ Lattice is not a single tool — it's an integrated platform:
 
 | Component | Role | License |
 |-----------|------|---------|
-| **Lattice Runtime** | Coordination layer — identity, authorization, audit, budget | Apache 2.0 |
-| **Lattice Inference** | Local AI serving — MLX, CUDA, zero-config clustering, OpenAI-compatible API | Apache 2.0 |
-| **Lattice Workbench** | Reference Engineering Stack — multi-model agent workspace, desktop/web/CLI | MIT |
-| **Lattice Registry** | Community ecosystem — Terraform modules, templates, stacks | Apache 2.0 |
-| **Lattice Enterprise** | Governance at scale — admin, compliance, directory integration | Commercial |
+| [**Homebrew**](https://github.com/latticeHQ/latticeHomebrew) | One-line install on macOS and Linux | MIT |
+| [**Inference**](https://github.com/latticeHQ/latticeInference) | Local AI serving — MLX on Apple Silicon, zero-config clustering | Apache 2.0 |
+| [**Registry**](https://github.com/latticeHQ/latticeRegistry) | Community ecosystem — Terraform modules, templates, stacks | Apache 2.0 |
+| [**Runtime**](https://github.com/latticeHQ/latticeRuntime) | Coordination layer — identity, authorization, audit, budget | Apache 2.0 |
+| [**Terraform Provider**](https://github.com/latticeHQ/terraform-provider-lattice) | Infrastructure as code for Lattice deployments | MPL 2.0 |
+| [**Toolbox**](https://github.com/latticeHQ/latticeToolbox) | macOS app manager for Lattice products | MIT |
+| [**Workbench**](https://github.com/latticeHQ/latticeWorkbench) | Reference Engineering Stack — multi-model agent workspace | MIT |
 
 Together, these components form the coordination layer for institutional AI — governing how agents authenticate, communicate, and operate across an organization.
 
